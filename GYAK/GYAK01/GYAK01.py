@@ -8,4 +8,25 @@ def contains_odd(input_list):
         else:
             False
 
-print(contains_odd(numbers))
+def is_odd(input_list: int) -> bool:
+    res_list = []
+    for index in input_list:
+        if (input_list[index - 1] % 2 == 0):
+            res_list.append(True)
+        else:
+            res_list.append(False)
+    return res_list
+
+def element_wise_sum(input_list_1, input_list_2):
+    if len(input_list_1) != len(input_list_2):
+        raise ValueError("The two input lists must have the same length.")
+    result = []
+    for i in range(len(input_list_1)):
+        result.append(input_list_1[i] + input_list_2[i])
+    
+    return result
+
+    def dict_to_list(input_dict):
+    result = list(input_dict.items())
+    
+    return result
