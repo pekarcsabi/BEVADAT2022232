@@ -26,7 +26,7 @@ def element_wise_sum(input_list_1, input_list_2):
     
     return result
 
-    def dict_to_list(input_dict):
+def dict_to_list(input_dict):
     result = list(input_dict.items())
     
     return result
