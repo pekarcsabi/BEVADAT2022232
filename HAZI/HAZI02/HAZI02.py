@@ -90,11 +90,11 @@ def list_days(start_date: np.datetime64, end_date: np.datetime64) -> np.array:
     return res
 
 #13
-def actual_date() -> np.datetime64():
+def get_act_date() -> np.datetime64():
     return np.datetime64('today', 'D')
 
 #14
 def sec_from_1970() -> int:
-    res = np.datetime64('now', 's')-np.datetime64('1971-01-01 00:00:00')
+    res = np.datetime64('now', 's')-np.datetime64('1970-01-01 00:00:00')
     res = res.astype(int)
     return res
