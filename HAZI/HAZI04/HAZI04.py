@@ -121,7 +121,10 @@ függvény neve: female_top_score
 '''
 
 # %%
-
+def female_top_score(df_data) -> tuple:
+    df_copy = df_data.copy()
+    fem = df_copy.loc[np.where(df_copy['gender'] == 'female') and max(df_copy['math score'] + df_copy['reading score'] + df_copy['writing score'])]
+    return (fem['math score'], fem['reading score'], fem['writing score'])
 
 # %%
 '''
@@ -141,7 +144,21 @@ függvény neve: add_grade
 '''
 
 # %%
-
+def add_grade(df_data) ->pd.core.frame.DataFrame:
+    df_copy = df_data.copy() 
+    df_copy['grade'] = ''
+    for i in range(len(df_copy)):
+        if (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.9:
+            df_copy['grade'] = 'A'
+        elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.8:
+            df_copy['grade'] = 'B'
+        elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.7:
+            df_copy['grade'] = 'C'
+        elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.6:
+            df_copy['grade'] = 'D'
+        else:
+            df_copy['grade'] = 'E'
+    return df_copy
 
 # %%
 '''
@@ -159,7 +176,17 @@ függvény neve: math_bar_plot
 '''
 
 # %%
+def math_bar_plot(df_data) -> plt.figure:
+    df_copy = df_data.copy()
+    gender_group = df_copy.groupby('gender')['math score'].mean()
+    fig, ax = plt.subplots()
+    ax.bar(gender_group.index, gender_group.values)
+    ax.set_xlabel('Gender')
+    ax.set_ylabel('Math Score')
+    ax.set_title('Average Math Score by Gender')
+    return fig
 
+math_bar_plot(df)
 
 # %%
 ''' 
