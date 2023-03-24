@@ -72,7 +72,7 @@ függvény neve: population_density
 
 # %%
 def population_density(test_df) ->pd.core.frame.DataFrame:
-    test_df['destiny'] = test_df['population'] / test_df['area']
+    test_df['density'] = test_df['population'] / test_df['area']
     return test_df
 
 # %%
