@@ -97,7 +97,6 @@ def plot_population(test_df)->plt.figure:
     ax.set_xlabel('Country')
     ax.set_ylabel('Population (millions)')
     ax.set_title('Population of Countries')
-    plt.show()
     return fig
 
 # %%
@@ -121,3 +120,5 @@ def plot_area(test_df)->plt.figure:
     return fig
 
 
+
+# %%
