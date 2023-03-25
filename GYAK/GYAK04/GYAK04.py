@@ -91,7 +91,7 @@ függvény neve: plot_population
 '''
 
 # %%
-def plot_population(test_df)->plt.figure.Figure:
+def plot_population(test_df)->plt.figure:
     fig, ax = plt.subplots()
     ax.bar(test_df['country'], test_df['population'])
     ax.set_xlabel('Country')
@@ -113,7 +113,7 @@ függvény neve: plot_area
 '''
 
 # %%
-def plot_area(test_df)->plt.figure.Figure:
+def plot_area(test_df)->plt.figure:
     fig, ax = plt.subplots()
     ax.pie(test_df['area'], labels = test_df['country'])
     ax.set_title('Area of Countries')
