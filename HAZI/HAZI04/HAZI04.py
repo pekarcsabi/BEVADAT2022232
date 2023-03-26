@@ -186,8 +186,6 @@ def math_bar_plot(df_data) -> plt.figure:
     ax.set_title('Average Math Score by Gender')
     return fig
 
-math_bar_plot(df)
-
 # %%
 ''' 
 Készíts egy függvényt, ami a bemeneti Dataframe adatai alapján elkészít egy olyan histogramot,
@@ -238,7 +236,3 @@ def ethnicity_pie_chart(df_data) -> plt.figure:
     ax.pie(sizes, labels=lab, autopct='%1.1f%%')
     ax.set_title('Proportion of Students by Race/Ethnicity')
     return fig
-
-ethnicity_pie_chart(df)
-
-
