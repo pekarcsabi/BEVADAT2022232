@@ -204,7 +204,7 @@ függvény neve: writing_hist
 '''
 
 # %%
-def writing_hist(df_data):
+def writing_hist(df_data) -> plt.figure:
     df_copy = df_data.copy()
     fig, ax = plt.subplots()
     ax.hist(df_copy['writing score'])
