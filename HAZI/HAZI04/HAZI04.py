@@ -107,7 +107,7 @@ függvény neve: add_age
 def add_age(df_data) -> pd.core.frame.DataFrame:
     df_copy = df_data.copy()
     random.seed(42)
-    df_copy['age'] = (random.randint(18, 67))
+    df_copy['age'] = [random.randint(18, 66) for _ in range(len(df_copy))]
     return df_copy
 
 # %%
@@ -123,8 +123,11 @@ függvény neve: female_top_score
 # %%
 def female_top_score(df_data) -> tuple:
     df_copy = df_data.copy()
-    fem = df_copy.loc[np.where(df_copy['gender'] == 'female') and max(df_copy['math score'] + df_copy['reading score'] + df_copy['writing score'])]
-    return (fem['math score'], fem['reading score'], fem['writing score'])
+    filtered = df_copy.loc[np.where(df_copy['gender']=="female")]
+    filtered['max score'] = filtered['math score'] + filtered['reading score'] + filtered['writing score']
+    idx = np.argmax(filtered['max score'])
+    top = filtered.iloc[idx]
+    return (top['math score'], top['reading score'], top['writing score'])
 
 # %%
 '''
@@ -149,15 +152,15 @@ def add_grade(df_data) ->pd.core.frame.DataFrame:
     df_copy['grade'] = ''
     for i in range(len(df_copy)):
         if (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.9:
-            df_copy['grade'] = 'A'
+            df_copy['grade'][i] = 'A'
         elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.8:
-            df_copy['grade'] = 'B'
+            df_copy['grade'][i] = 'B'
         elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.7:
-            df_copy['grade'] = 'C'
+            df_copy['grade'][i]= 'C'
         elif (df_copy['math score'][i] + df_copy['reading score'][i] + df_copy['writing score'][i]) / 300 >= 0.6:
-            df_copy['grade'] = 'D'
+            df_copy['grade'][i] = 'D'
         else:
-            df_copy['grade'] = 'E'
+            df_copy['grade'][i] = 'E'
     return df_copy
 
 # %%
