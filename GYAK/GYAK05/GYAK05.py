@@ -10,13 +10,17 @@ class KNNClassifier:
     def __init__(self, k:int, test_split_ratio :float):
         self.k = k
         self.test_plit_ratio = test_split_ratio
+        
+    @property
+    def k_neihbors(self):
+        return self.k
 
     @staticmethod
     def load_csv(csv_path:str) ->Tuple[np.ndarray, np.ndarray]:
         np.random.seed(42)
         dataset= np.genfromtxt(csv_path, delimiter=',')
         np.random.shuffle(dataset)
-        x,y = dataset[:,:-1],dataset[:,-1]
+        x,y = dataset[:,:4],dataset[:,-1]
         return x,y
     
     @classmethod
@@ -34,14 +38,14 @@ class KNNClassifier:
     
     @classmethod
     def predict(self, x_test:np.ndarray):
-        self.y_spreds=[]
+        labels_pred = []
         for x_test_element in x_test:
             distances = self.euclidean(x_test_element)
             distances = np.array(sorted(zip(distances, self.y_train)))
-
-            label_pred = mode(distances[:self.k,1], keepdims=False).mode
-            self.y_spreds.append(label_pred)
-            self.y_spreds = np.array(self.y_spreds, dtype=np.int64)
+            label_pred = mode(distances[:self.k,1],keepdims=False).mode
+            labels_pred.append(label_pred)
+        self.y_preds = np.array(labels_pred,dtype=np.int32)
+        return self.y_preds
     
     @classmethod
     def accuaracy(self) -> float:
@@ -49,10 +53,7 @@ class KNNClassifier:
         return true_positive / len(self.y_test) * 100
     
     @classmethod
-    def confusion_matrix(self):
-        conf_matrix = confusion_matrix(self.y_test, self.y_preds)
-        sns.heatmap(conf_matrix,annot=True)
+    def confusion_matrix(self) -> np.ndarray:
+        return confusion_matrix(self.y_test,self.y_preds)
     
-    @property
-    def k_neihbors(self):
-        return self.k
+    
