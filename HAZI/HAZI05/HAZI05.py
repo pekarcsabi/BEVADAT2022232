@@ -7,7 +7,7 @@ import seaborn as sns
 import pandas as pd
 import math
 
-csv_path = "diabetes.csv"
+#csv_path = "diabetes.csv"
 
 # %%
 class KNNClassifier:
