@@ -1,17 +1,14 @@
 # %%
 import numpy as np
+import pandas as pd
+import math
+import seaborn as sns
 from typing import Tuple
 from scipy.stats import mode
 from sklearn.metrics import confusion_matrix
-import seaborn as sns
-import pandas as pd
-import math
-
-#csv_path = "diabetes.csv"
 
 # %%
 class KNNClassifier:
-    counter = 0
     
     def __init__(self, k:int, test_split_ratio :float):
         self.k = k
@@ -28,7 +25,6 @@ class KNNClassifier:
         x,y = dataset.iloc[:,:-1],dataset.iloc[:,-1]
         return x,y
     
-    @classmethod
     def train_test_split(self, features:pd.DataFrame, labels:pd.Series):
         test_size = int(len(features) *  self.test_split_ratio)
         train_size = len(features) - test_size
@@ -37,11 +33,9 @@ class KNNClassifier:
         self.x_train, self.y_train = features.iloc[:train_size,:].reset_index(drop=True), labels.iloc[:train_size].reset_index(drop=True)
         self.x_test, self.y_test = features.iloc[train_size:train_size + test_size,:].reset_index(drop=True), labels.iloc[train_size:train_size + test_size].reset_index(drop=True)
     
-    @classmethod
     def euclidean(self, element_of_x:pd.Series) -> pd.Series:
         return pd.np.sqrt(((self.x_train - element_of_x)**2).sum(axis=1))
     
-    @classmethod
     def predict(self, x_test:pd.DataFrame):
         labels_pred = []
         for index, x_test_element in x_test.iterrows():
@@ -52,14 +46,22 @@ class KNNClassifier:
             labels_pred.append(label_pred)
         self.y_preds = pd.Series(labels_pred)
             
-    @classmethod
     def accuaracy(self) -> float:
         true_positive = (self.y_test == self.y_preds).sum()
         return true_positive / len(self.y_test) * 100
     
-    @classmethod
     def plot_confusion_matrix(self):
         return confusion_matrix(self.y_test, self.y_preds)
+    
+    def best_k(self) -> Tuple[int, float]:
+        accuracies = []
+        for i in range(1, 21):
+            self.k = i
+            self.predict(self.x_test)
+            acc = self.accuracy()
+            accuracies.append((i, acc))
+        best_k, best_acc = max(accuracies, key=lambda x: x[1])
+        return (best_k, round(best_acc, 2))
 
 # %%
 
