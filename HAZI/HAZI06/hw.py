@@ -35,24 +35,28 @@
     + Írj egy olyan metódust, ami elmenti a dataframe első 60 000 sorát. A függvénynek egy string paramétere legyen, az pedig az, hogy hova mentse
       el a csv-t (pl.: 'data/NJ.csv'). A függvény neve legyen 'save_first_60k'. 
       
-    - Írj egy függvényt ami a fenti függvényeket összefogja és megvalósítja (sorbarendezés --> drop_columns_and_nan --> ... --> save_first_60k),
+    + Írj egy függvényt ami a fenti függvényeket összefogja és megvalósítja (sorbarendezés --> drop_columns_and_nan --> ... --> save_first_60k),
       a függvény neve legyen 'prep_df'. Egy paramnétert várjon, az pedig a csv-nek a mentési útvonala legyen. Ha default value-ja legyen 
       'data/NJ.csv'
 
 3.  A feladatot a HAZI06.py-ban old meg.
-    Az órán megírt DecisionTreeClassifier-t fit-eld fel az első feladatban lementett csv-re. 
+    Az órán megírt DecisionTreeClassifier-t fit-eld fel az első feladatban lementett csv-re.
+    
     A feladat célja az, hogy határozzuk meg azt, hogy a vonatok késnek-e vagy sem. 0p <= x < 5p --> nem késik, ha 5 < x --> késik.
+    
     Az adatoknak a 20% legyen test és a splitelés random_state-je pedig 41 (mint órán)
+    
     A testset-en 80% kell elérni. Ha megvan a minimum százalék, akkor azzal paraméterezd fel a decisiontree-t és azt kell leadni.
 
     A leadásnál csak egy fit kell, ezt azzal a paraméterre paraméterezd fel, amivel a legjobb accuracy-t elérted.
 
     A helyes paraméter megtalálásához használhatsz grid_search-öt.
+    
     https://www.w3schools.com/python/python_ml_grid_search.asp 
 
 4.  A tanításodat foglald össze 4-5 mondatban a HAZI06.py-ban a fájl legalján kommentben. Írd le a nehézségeket, mivel próbálkoztál, mi vált be és
     mi nem. Ezen kívül írd le 10 fitelésed eredményét is, hogy milyen paraméterekkel probáltad és milyen accuracy-t értél el. 
-Ha ezt feladatot hiányzik, akkor nem fogadjuk el a házit!
+    Ha ezt feladatot hiányzik, akkor nem fogadjuk el a házit!
 
 HAZI06-
     -NJCleaner.py
