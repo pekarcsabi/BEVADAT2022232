@@ -13,14 +13,20 @@ df = pd.DataFrame(iris.data, columns=iris.feature_names)
 X = df['petal width (cm)'].values
 y = df['sepal length (cm)'].values
 
-lrg = LinearRegressionSkeleton.LinearRegression()
-lrg.fit(X, y)
-lrg.predict(X)
-lrg.evaluate(X, y)
-'''
-y_pred = lrg.predict(X)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-plt.scatter(lrg.X_test, lrg.y_test)
-plt.plot([min(lrg.X_test), max(lrg.X_test)], [min(lrg.y_pred), max(lrg.y_pred)], color='red') # predicted
+reg = LinearRegressionSkeleton.LinearRegression()
+
+reg.fit(X_train, y_train)
+
+reg.predict(X_test)
+
+reg.predict(X_test)
+
+reg.evaluate(X_test, y_test)
+
+print('m:', reg.m, 'c:', reg.c)
+
+plt.scatter(X_test, y_test)
+plt.plot([min(X_test), max(X_test)], [min(reg.y_pred), max(reg.y_pred)], color='red') # predicted
 plt.show()
-'''
