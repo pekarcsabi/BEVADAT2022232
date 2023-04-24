@@ -136,7 +136,7 @@ függvény neve: train_logistic_regression
 '''
 
 # %%
-def train_logistic_regression(X_train, y_train) -> sk.linear_model._base.LinearRegression:
+def train_logistic_regression(X_train, y_train) -> sk.linear_model._base.LogisticRegression:
     model = LogisticRegression().fit(X_train, y_train)
     return model
 
