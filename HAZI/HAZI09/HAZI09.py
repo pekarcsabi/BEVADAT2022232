@@ -26,7 +26,7 @@ class KMeansOnDigits:
             self.labels[mask] = mode(self.digits.target[mask])[0]
             
     def calc_accuracy(self):
-        self.accuracy=accuracy_score(self.digits.target, self.labels)
+        self.accuracy=accuracy_score(self.digits.target, self.labels).round(2)
         
     def confusion_matrix(self):
         self.mat = confusion_matrix(self.digits.target, self.labels)
