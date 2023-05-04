@@ -33,7 +33,7 @@ class Dense:
             result.append(np.sum(self.W[:,i]*X)+self.bias[i])
         return result
     
-    def forward_pass_b(self, X):
+    def forward_pass(self, X):
         return X @ self.W + self.bias
     
 
